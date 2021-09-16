@@ -1,19 +1,7 @@
-@-moz-viewport { width: device-width; scale: 1; }
-@-ms-viewport { width: device-width; scale: 1; }
-@-o-viewport { width: device-width; scale: 1; }
-@-webkit-viewport { width: device-width; scale: 1; }
-@viewport { width: device-width; scale: 1; }
-
 html {
   box-sizing: border-box;
-  -moz-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-
   font-family: Georgia, serif;
   line-height: 1.5;
-  background-color: #f2f1ed;
 }
 
 *,
@@ -22,93 +10,103 @@ html {
   box-sizing: inherit;
 }
 
-body {
-  margin: 0;
-  padding: 1rem;
-
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 1rem;
-  grid-template-areas:
-    "banner banner"
-    "col1 col2";
-}
-
 img {
   width: 100%;
 }
-@@ -30,3 +42,74 @@ header {
-  /* Remove the <header> box and allow us to directly apply header’s children to the grid. */
-  display: contents;
+
+body {
+  margin: 0;
+  padding: 1rem;
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "header header"
+    "figure figure";
+  grid-template-columns: 2fr;
+  grid-template-rows: 1fr;
 }
 
-.logo {
-  grid-column: 1;
-  grid-row: 1;
-  align-self: end;
-  width: 14rem;
-  margin: 0 0 1rem 1rem;
-  order: 1;
+header {
+  /*
+  Remove the <header> box and allow us to directly apply header’s children to the grid.
+  */
+
+  grid-area: header;
+  display: contents;
+  padding: 0;
+  margin: 1rem;
 }
 
 .pano {
-  grid-area: banner;
+  grid-area: header;
+  grid-column: 1/span 2;
+  grid-row: 1 / span 2;
+  z-index: 1;
+}
+
+.logo {
+  z-index: 100;
+  grid-area: header;
+  grid-row: 2;
+  grid-column: 1;
+  width: 15rem;
+  align-self: flex-end;
+  padding: 0 0 0 1rem;
+  margin-bottom: 1rem;
 }
 
 nav {
-  grid-column: 2 / -1;
+  z-index: 50;
   grid-row: 1;
+  grid-column: 2;
 }
 
 ul {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-
   display: flex;
-  justify-content: start;
-}
-
-h2,
-li {
-  font-family: "Patua One", sans-serif;
-}
-
-li {
+  padding-top: 0;
   margin: 0;
-  padding: 1rem;
-  font-size: 2rem;
+  padding-right: 3rem;
+  justify-content: flex-end;
 }
 
-a {
-  text-decoration: underline;
+ul li {
+  font-family: "Patua One", sans-serif;
+  display: inline;
+  color: #fff;
+  text-decoration: none;
+  padding: 1rem;
+}
+
+ul li a {
+  font-size: 2rem;
   color: #fff;
 }
 
 main {
-  display: contents;
-}
-
-figure:nth-child(1) {
-  grid-area: col1;
+  grid-area: figure;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   margin: 0;
+  padding: 0;
+  column-gap: 1rem;
 }
 
-figure:nth-child(2) {
-  grid-area: col2;
+figure {
+  padding: 1rem 0 0;
   margin: 0;
-}
-
-figcaption {
-  margin-top: 1rem;
 }
 
 h2 {
+  font-family: "Patua One", sans-serif;
+  font-weight: bold;
+  outline-color: #f2f1ed;
   color: #30658d;
-  margin: 0;
-  padding: 0;
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 
 p {
+  font-weight: normal;
+  padding: 0;
   margin: 0;
 }
